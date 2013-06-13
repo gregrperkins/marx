@@ -42,6 +42,8 @@ class Step(object):
             arg_map = {}
         if isinstance(arg_map, dict):
             self.arg_mapper = functools.partial(self.default_arg_mapper, mapping=arg_map)
+        elif not callable(arg_map):
+            raise TypeError('arg_map must be dict or callable')
         else:
             self.arg_mapper = arg_map
 

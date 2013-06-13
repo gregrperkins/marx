@@ -129,6 +129,11 @@ class Test(unittest.TestCase):
         assert m.called
         m.assert_called_once_with(**m_cm.return_value)
 
+    @nose.tools.raises(TypeError)
+    def test_arg_map_invalid(self):
+        m = Mock()
+        Step(m, arg_map='bad')
+
     def test_auto_map(self):
         m_cm = Mock()
         m_cm.moo = True
